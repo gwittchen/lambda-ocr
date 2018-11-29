@@ -1,4 +1,4 @@
-# Project Title
+# Tesseract OCR on AWS Lambda
 
 AWS Lambda function to run tesseract OCR
 
