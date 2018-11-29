@@ -30,5 +30,5 @@ RUN /bin/bash /build_lambda_env.sh $lambda_name
 COPY ./src /src
 ADD docker-entrypoint.sh /docker-entrypoint.sh
 
-#ENTRYPOINT ["./docker-entrypoint.sh"]
-#CMD ["output"]
+ENTRYPOINT ["./docker-entrypoint.sh"]
+CMD ["output"]

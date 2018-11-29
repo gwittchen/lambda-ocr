@@ -22,7 +22,7 @@ virtualenv -p python3 $VIRTUAL_ENV
 source $VIRTUAL_ENV/bin/activate
 
 # Install lambda requiements
-CPPFLAGS=-I/usr/local/include pip install -r /srv/requirements.txt
+CPPFLAGS=-I/usr/local/include pip install -r /src/requirements.txt
 
 echo "zip lambda archive"
 if ! [[ -d /$OUTPUT_DIRECTORY ]] ; then 
@@ -35,7 +35,7 @@ cp -r $VIRTUAL_ENV/lib/python3.6/site-packages/* $INPUT_DIRECTORY
 cp -r $VIRTUAL_ENV/lib64/python3.6/site-packages/* $INPUT_DIRECTORY
 
 echo "Copy source from /src"
-cd /scr
+cd /src
 cp -a /src/. /$INPUT_DIRECTORY/
 
 #cleanup artefacts
@@ -45,6 +45,6 @@ if [ -f /$OUTPUT_DIRECTORY/$INPUT_DIRECTORY.zip ]; then
 fi
 
 #package lambda and binaries
-cd $INPUT_DIRECTORY
+cd /$INPUT_DIRECTORY
 ls /$INPUT_DIRECTORY/lambda_function.py
 zip -r /$OUTPUT_DIRECTORY/$INPUT_DIRECTORY.zip ./* --exclude *.pyc
