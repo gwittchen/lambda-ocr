@@ -14,21 +14,20 @@ The whole idea is based leveraged from [here](https://gist.github.com/barbolo/e5
 ### Prerequisites
 
 In order to get started you need docker and [docker-compose](https://docs.docker.com/compose/install/#prerequisites).
-This is a very basic lamdba example and was tested on AWS Python3.6 environment 11/2018.
-AWS deployment has not been automated and will require an S3 bucket due to the zip size limitations.
-
+This is a very basic lamdba example and was tested on AWS Lambda Python3.6 environment in 11/2018.
+AWS deployment has not been automated yet and will require an S3 bucket due to the zip size limitations.
 
 ### Installing
 
-Clone the repository and simply build docker container which compiles the binaries.
+Clone the repository and simply build a docker container which compiles the binaries for AWS lambda environment.
 This will run for a while but should only be required for compiling dependencies.
 
 ```bash
 docker-compose build
 ```
 
-Run the docker-compose up is used to package and install you lambda code with the
-binaries and python dependencies. To modify behavior have a look into the [docker-entrypoint.sh]()
+Run is used to package and install you lambda code with the
+binaries and python3 dependencies. To modify behavior have a look into the [docker-entrypoint.sh](https://github.com/gwittchen/lambda-ocr/blob/master/docker-entrypoint.sh)
 
 ```bash
 docker lambda-build up
