@@ -9,7 +9,7 @@ These instructions will get you a copy of the project up and running on your loc
 The idea is to use a docker container to simulate an AWS lambda environment this allows to build binaries against AWS lambda linux env.
 In this example I have build [leptonica](http://www.leptonica.com/) and [Tesseract Open Source OCR Engine](https://github.com/tesseract-ocr/tesseract).
 
-The whole idea is based leveraged from [here](https://gist.github.com/barbolo/e59aa45ec8e425a26ec4da1086acfbc7)
+The whole idea is leveraged from [here](https://gist.github.com/barbolo/e59aa45ec8e425a26ec4da1086acfbc7)
 
 ### Prerequisites
 

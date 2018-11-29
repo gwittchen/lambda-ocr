@@ -14,5 +14,4 @@ artefact/*
 .envrc
 
 #some local stuff
-leptonica/
 tfenv/
