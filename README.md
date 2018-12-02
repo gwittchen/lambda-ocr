@@ -30,7 +30,7 @@ Run is used to package and install you lambda code with the
 binaries and python3 dependencies. To modify behavior have a look into the [docker-entrypoint.sh](https://github.com/gwittchen/lambda-ocr/blob/master/docker-entrypoint.sh)
 
 ```bash
-docker-compose lambda-build up
+docker-compose up
 ```
 
 The output will be a generated zip in the artefact folder.
