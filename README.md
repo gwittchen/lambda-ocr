@@ -65,7 +65,7 @@ The output will be a generated zip in the artefact folder.
 
 ## Contributing
 
-Please feel to comment or contribute especially if you integrate with [serverless](https://serverless.com/) or [AWS SAM](https://docs.aws.amazon.com/lambda/latest/dg/deploying-lambda-apps.html)
+Please feel free to comment or contribute especially if your integrating with [serverless](https://serverless.com/) or [AWS SAM](https://docs.aws.amazon.com/lambda/latest/dg/deploying-lambda-apps.html)
 
 ## Authors
 
