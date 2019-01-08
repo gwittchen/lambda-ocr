@@ -1,17 +1,18 @@
 __pycache__/
 
-artefact/*
+tesseract-layer/layer
 
+## Serverless
+node_modules
+**/.serverless
 
 *.png
-*.tsv
 *.zip
 *.ipynb
-.ipynb_checkpoints/
 
 .vscode/
 
 .envrc
 
-#some local stuff
-tfenv/
+#pyenv
+tessenv/

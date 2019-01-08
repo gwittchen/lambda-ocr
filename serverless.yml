@@ -1,0 +1,60 @@
+service: ocr-test
+
+package:
+  exclude:
+    - .venv/**
+    - node_modules/**
+    - .git/**
+    - '**/*.pyc'
+    - tesseract-layer/**
+    - requirements/**
+    - tests/**
+    - test*
+    - .vscode/**
+    - tessenv/**
+
+plugins:
+  - serverless-python-requirements
+  - serverless-plugin-existing-s3
+  - serverless-pseudo-parameters
+custom:
+  pythonRequirements:
+    fileName: requirements/requirements.in
+    zip: false
+    dockerizePip: true
+  app_acronym: ocr-test
+  default_stage: dev
+  tesseract-layer:
+    name: tesseractPython36
+    version: 17 
+  tessdata: /opt/data/tessdata
+  stage: ${opt:stage, self:custom.default_stage}
+  stack_name: ${self:custom.app_acronym}-${self:custom.stage}
+  region: ${opt:region, self:provider.region}
+  account_id: 
+    Value: Ref! "AWS::AccountId"
+  # Put this here rather than in code (presigned URL TTL)
+  url_default_ttl: 60
+
+provider:
+  name: aws
+  runtime: python3.6
+  stage: ${opt:stage, 'dev'}
+  region: ap-southeast-2
+  environment:
+    REGION: ${self:custom.region}
+    URL_DEFAULT_TTL: ${self:custom.url_default_ttl}
+    TESSDATA_PREFIX: ${self:custom.tessdata}
+
+functions:
+  ocr-test:
+    handler: lambda_function.call
+    name: ${self:custom.stack_name}-ocr-test
+    timeout: 60
+    events:
+      - http:
+          method: post
+          path: /ocr
+          cors: true
+    layers:
+      - "arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:layer:${self:custom.tesseract-layer.name}:${self:custom.tesseract-layer.version}"
