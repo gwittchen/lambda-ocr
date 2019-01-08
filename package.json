@@ -1,0 +1,12 @@
+{
+  "name": "ocr-test",
+  "description": "",
+  "version": "0.1.0",
+  "dependencies": {
+    "serverless-plugin-existing-s3": "^2.2.2",
+    "serverless-pseudo-parameters": "^2.4.0"
+  },
+  "devDependencies": {
+    "serverless-python-requirements": "^4.2.5"
+  }
+}
