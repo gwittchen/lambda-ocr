@@ -1,8 +1,0 @@
-version: "3.3"
-services:
-  lambda-build:
-    build:
-      context: .
-    volumes:
-      - ./artefact:/output
-      - ./src:/src
