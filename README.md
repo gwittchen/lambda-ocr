@@ -188,11 +188,26 @@ Alternative query the layer verion
 aws lambda get-layer-version --layer-name tesseractPython36 --version-number #versionNumber eg. 1
 ```
 
+Find the and update the version number in the `serverless.yml` file in the root directory 
+
+```yml
+# serverless.yml
+.
+.
+.
+tesseract-layer:
+    name: tesseractPython36
+    version: 1
+.
+.
+.
+```
+
 ### Lambda Deployment
 
 Switch to the project root directory
 
-#### Install plugin dependencies
+#### Install serverless plugin dependencies
 
 ```bash
 nmp install
