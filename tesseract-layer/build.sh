@@ -1,6 +1,35 @@
 #!/bin/bash -x
 
+showHelp() {
+# `cat << EOF` This means that cat should stop reading when EOF is detected
+cat << EOF  
+Usage: ./build -vnc [-hvnc]
+
+-h,             Display help
+
+-c,             clean rebuild docker container using no-cache
+
+EOF
+# EOF is found above and hence cat command stops reading. This is equivalent to echo but much neater when printing out.
+}
+
+
+
+export DOCKER_ARG=""
+while getopts ":hc" opt; do
+  case ${opt} in
+    h ) showHelp
+		exit 0
+      ;;
+    c ) export DOCKER_ARG="--no-cache"
+      ;;
+    \? ) showHelp
+      ;;
+  esac
+done
 set -e
+
+echo "$DOCKER_ARG"
 
 # define required libs
 
@@ -37,7 +66,7 @@ LAMBDA_DIR=layer
 rm -rf layer
 mkdir -p layer/python/bin
 mkdir -p layer/{lib,bin,data}
-docker build -t tessleract-builder -f Dockerfile .
+docker build $DOCKER_ARG -t tessleract-builder -f Dockerfile .
 CONTAINER=$(docker run -d tessleract-builder false)
 
 # copy libs

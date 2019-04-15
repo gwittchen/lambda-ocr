@@ -6,7 +6,7 @@ ENV TESSERACT_VERSION=4.0.0
 ENV PYTHON_VERSION=3.6.1
 
 ## install dependencies
-RUN yum -y update && yum makecache fast && yum -y install tar xz yum-utils gcc gcc-c++ make autoconf aclocal automake libtool findutils \
+RUN yum -y clean expire-cache && yum -y makecache fast && yum -y update && yum -y install tar xz gcc gcc-c++ make autoconf aclocal automake libtool findutils \
 libjpeg-devel libpng-devel libtiff-devel zlib-devel \
 libzip-devel freetype-devel lcms2-devel libwebp-devel \
 tcl-devel tk-devel wget tar diffutils autoconf automake \

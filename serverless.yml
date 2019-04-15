@@ -26,7 +26,7 @@ custom:
   default_stage: dev
   tesseract-layer:
     name: tesseractPython36
-    version: 17 
+    version: 1 
   tessdata: /opt/data/tessdata
   stage: ${opt:stage, self:custom.default_stage}
   stack_name: ${self:custom.app_acronym}-${self:custom.stage}
