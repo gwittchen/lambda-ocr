@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 showHelp() {
 # `cat << EOF` This means that cat should stop reading when EOF is detected
@@ -9,6 +9,10 @@ Usage: ./build -vnc [-hvnc]
 
 -c,             clean rebuild docker container using no-cache
 
+-l,             list of space-delimited tesseract languages (default: eng)
+
+-m,             tesseract model: fast/best (default: best)
+
 EOF
 # EOF is found above and hence cat command stops reading. This is equivalent to echo but much neater when printing out.
 }
@@ -16,12 +20,18 @@ EOF
 
 
 export DOCKER_ARG=""
-while getopts ":hc" opt; do
+TESSERACT_LANG="eng"
+TESSERACT_MODE="best"
+while getopts "m:l:hc" opt; do
   case ${opt} in
     h ) showHelp
 		exit 0
       ;;
     c ) export DOCKER_ARG="--no-cache"
+      ;;
+    m ) TESSERACT_MODE=$OPTARG
+      ;;
+    l ) TESSERACT_LANG=$(echo $OPTARG | tr ',' ' ')
       ;;
     \? ) showHelp
       ;;
@@ -66,7 +76,7 @@ LAMBDA_DIR=layer
 rm -rf layer
 mkdir -p layer/python/bin
 mkdir -p layer/{lib,bin,data}
-docker build $DOCKER_ARG -t tessleract-builder -f Dockerfile .
+docker build $DOCKER_ARG --build-arg TESSERACT_LANG="$TESSERACT_LANG" --build-arg TESSERACT_MODE="$TESSERACT_MODE" -t tessleract-builder -f Dockerfile .
 CONTAINER=$(docker run -d tessleract-builder false)
 
 # copy libs

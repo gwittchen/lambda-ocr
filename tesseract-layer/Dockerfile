@@ -5,6 +5,10 @@ ENV LEPTONICA_VERSION=leptonica-1.76.0
 ENV TESSERACT_VERSION=4.0.0
 ENV PYTHON_VERSION=3.6.1
 
+# tesseract data parameters
+ARG TESSERACT_LANG
+ARG TESSERACT_MODE
+
 ## install dependencies
 RUN yum -y clean expire-cache && yum -y makecache fast && yum -y update && yum -y install tar xz gcc gcc-c++ make autoconf aclocal automake libtool findutils \
 libjpeg-devel libpng-devel libtiff-devel zlib-devel \
@@ -50,7 +54,7 @@ RUN pip install \
   --target=/var/task/python/ --upgrade pillow==5.4.0
 
 RUN mkdir -p /var/task/tessdata
-RUN wget https://github.com/tesseract-ocr/tessdata_best/raw/master/eng.traineddata -P /var/task/tessdata
+RUN for lang in $TESSERACT_LANG; do wget https://github.com/tesseract-ocr/tessdata_${TESSERACT_MODE}/raw/master/$lang.traineddata -P /var/task/tessdata; done
 
 RUN rm -rf /var/task/Python-3.6.1*
 RUN ls /var/task/python/bin
