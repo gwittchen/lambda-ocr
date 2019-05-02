@@ -133,10 +133,19 @@ Build lambda layer using lambci/lambda docker container.
 ./build.sh
 ```
 
+By default English best (slow) tesseract model will be
+bundled into Lambda layer, but you can override it using
+`-m` parameter (for model type) and `-l` parameter (comma-separated
+list of languages), for example:
+
+```bash
+./build.sh -l eng,por -m fast # downloads FAST models for English and Portugese
+```
+
 Verify the folder layer has been created and contains the following folders
 
 ```bash
-$ ls layers
+$ ls layer
 bin #compiled tesseract binary
 data #tesseract language package eng
 lib #compiled lib dependencies
