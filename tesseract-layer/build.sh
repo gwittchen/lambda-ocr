@@ -45,6 +45,7 @@ echo "$DOCKER_ARG"
 
 libarray=(/usr/local/lib/libtesseract.so.4 \
 /usr/local/lib/liblept.so.5 \
+/usr/lib64/libgomp.so.1 \
 /usr/lib64/librt.so \
 /usr/lib64/libz.so \
 /usr/lib64/libm.so \
